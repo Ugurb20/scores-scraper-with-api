@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Match {
+  id              String   @id
+  home_team_name  String   @db.VarChar(255)
+  away_team_name  String   @db.VarChar(255)
+  home_team_score Int
+  away_team_score Int
+  status          String   @default("Post") @db.VarChar(255)
+  match_start_utc String?  @db.VarChar(255)
+  match_date      String?  @db.VarChar(255)
+  updated_at      DateTime @updatedAt
+}
